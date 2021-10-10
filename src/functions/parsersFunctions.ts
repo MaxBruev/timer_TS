@@ -36,15 +36,27 @@ export const getMillisecondsStartTime = (value: ITimeParameter): number => {
     return milliseconds
 }
 
-/**
- * @description функция преобразования из '2021-06-28 03:35:26' в timestamp
- *
- * Так же в функции происходит смена формата времени: с '2021-06-28 03:35:26' на '2021/06/28 03:35:26',
- * это необходимо для корректной работы в Safari
- *
- * @param { TDate } value  - Изменяемая дата
- * @return { number }
- */
+export const getMillisecondsRemainingTime = function (end: ITimeParameter, start?: ITimeParameter, repeat?:boolean ): number {
+    let result: number = 0
+
+    const dateNow: number = Date.now()
+    const dateEnd = getMillisecondsStopTime(end)
+
+    if (end.timestamp) {
+        result = dateEnd - dateNow
+    }
+    if (end.milliseconds || start?.milliseconds) {
+        result = dateEnd
+    }
+    if (start?.milliseconds && end.timestamp) {
+        const dateStart = getMillisecondsStartTime(start)
+
+        result = repeat ? dateEnd - dateNow : dateEnd - dateNow - dateStart
+    }
+
+    return result
+}
+
 export const transformTimestamp = function (value: TDate): number {
     return typeof value === 'string' ? Date.parse(value.replace(/-/g, '/')) : value
 }

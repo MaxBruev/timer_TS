@@ -1,23 +1,50 @@
-import { $ParserForTimerBack } from "@/classes/parsers/parserForTimerBack";
+import { $CalculateTime } from "@/classes/calculation/calculateTime";
 import { ITimeParameter } from "@/interfaces/timeParameter";
+import { IConstructorData } from "@/interfaces/constructorData";
 
 /**
  * @class ТАЙМЕР обратного отсчета.
  */
-class $TimerBack extends $ParserForTimerBack {
+class $TimerBack extends $CalculateTime {
 
-    /**
-     * @param { ITimeParameter } stopTime    - Дата когда остановится таймер
-     * @param { ITimeParameter } startTime   - Дата начала отсчета таймера(необязательный параметр)
-     */
     constructor(stopTime: ITimeParameter, startTime: ITimeParameter) {
-        super(stopTime, startTime)
-
-        this.pointStopTime = this.transformedStopTime
-
-        if (this.startTime) {
-            this.pointStartTime = this.transformedStartTime
-            this.timeIsUp = this.checkTimeIsUp
+        const data: IConstructorData = {
+            type: 'timeBack',
+            stopTime,
+            startTime
         }
+        super(data)
+    }
+
+    public start():void {
+        this.calculate()
+    }
+
+    public stop(): void {
+        this.stopTimer()
+    }
+
+    public get timerFull(): string {
+        return this.timeValues.timerFull
+    }
+
+    public get seconds(): string {
+        return this.timeValues.seconds;
+    }
+
+    public get minutes(): string {
+        return this.timeValues.minutes;
+    }
+
+    public get hours(): string {
+        return this.timeValues.hours;
+    }
+
+    public get days(): string {
+        return this.timeValues.days;
+    }
+
+    public get isOverTime(): boolean {
+        return this.timeIsUp;
     }
 }

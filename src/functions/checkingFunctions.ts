@@ -1,19 +1,10 @@
-import { ITimeParameter } from "@/interfaces/timeParameter";
 import {
     getMillisecondsStartTime,
     getMillisecondsStopTime,
     transformTimestamp
 } from "@/functions/parsersFunctions";
+import { ITimeParameter } from "@/interfaces/timeParameter";
 
-/**
- * @description фугкция проверки точки начала отсчета таймера.
- *
- * Если timeout > 0, это значит, что время начала отсчета еще не наступило, поэтому ставим setTimeout на timeout миллесекунд
- * Если timeout < 0 или = 0, это значит, что время начала отсчета уже наступило
- *
- * @param { ITimeParameter } startIn    - Время в которое начинается отсчет счетчика
- * @param  callback                     - Возвращаем значение проверки
- */
 export const checkPointStartTime = (startIn: ITimeParameter, callback: any): void => {
     if (startIn.timestamp) {
         let dateStart = transformTimestamp(startIn.timestamp)
