@@ -1,14 +1,28 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
-    "sourceMap": false,
-    "removeComments": true,
-    "moduleResolution": "node",
+    // Strict Checks
+    "alwaysStrict": true,
     "noImplicitAny": true,
-    "allowJs": true,
-    "watch": true,
-    "allowSyntheticDefaultImports": false,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    // Linter Checks
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    // Base Strict Checks
+    "noImplicitUseStrict": false,
+    "suppressExcessPropertyErrors": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "noStrictGenericChecks": false,
     "baseUrl": "./",
     "paths": {
       "@/*": [
@@ -17,14 +31,11 @@
     }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "src/**/*",
+    "tests/**/*"
   ],
 
   "exclude": [
-    "node_modules",
-    "tests/**/*.ts"
+    "node_modules"
   ]
 }

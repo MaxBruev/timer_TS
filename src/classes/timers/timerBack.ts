@@ -5,9 +5,9 @@ import { IConstructorData } from "@/interfaces/constructorData";
 /**
  * @class ТАЙМЕР обратного отсчета.
  */
-class $TimerBack extends $CalculateTime {
+export default class $TimerBack extends $CalculateTime {
 
-    constructor(stopTime: ITimeParameter, startTime: ITimeParameter) {
+    constructor(stopTime: ITimeParameter, startTime?: ITimeParameter) {
         const data: IConstructorData = {
             type: 'timeBack',
             stopTime,

@@ -25,13 +25,13 @@ export class $CalculateTime extends $Timer {
     }
 
     private calculateTimerBack(): void {
-        let dateNow;
+        // let dateNow;
         let remainingTime;
         let repeat
         let currentStartTime = getMillisecondsStartTime(this.pointStartTime)
 
         this._timer = setInterval(() => {
-            dateNow = Date.now();
+            // dateNow = Date.now();
             repeat = currentStartTime !== 0
             remainingTime = getMillisecondsRemainingTime(this.pointStopTime, this.pointStartTime, repeat)
 

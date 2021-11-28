@@ -1,4 +1,4 @@
 export interface ITimeParameter {
-    milliseconds: number,
-    timestamp: number | string
+    milliseconds?: number,
+    timestamp?: number | string
 }
