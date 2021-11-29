@@ -66,10 +66,8 @@ export class $CalculateTime extends $Timer {
                     if (status) {
                         this.calculateTimerBack()
                     } else {
-
-                        const remainingTime = getMillisecondsRemainingTime(this.pointStopTime, this.pointStartTime)
-
-                        this.timeValues = transformationTime(remainingTime)
+                        // Отправляем 0 чтобы предупредить, что время запуска еще не наступило
+                        this.timeValues = transformationTime(0)
                     }
                 })
             } else {

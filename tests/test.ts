@@ -1,13 +1,13 @@
 import {$TimerBack} from "../src/classes/timers/timerBack";
 
 const stopTime = {
-    // milliseconds: 10000
-    timestamp: '2021-11-29 18:00:00'
+    milliseconds: 10000
+    // timestamp: '2021-11-29 18:00:00'
 }
 
 const startTime = {
-    // milliseconds: 5000
-    timestamp: '2021-11-29 17:00:00'
+    milliseconds: 5000
+    // timestamp: '2021-11-29 17:00:00'
 }
 
 const EX_Timer: $TimerBack = new $TimerBack(stopTime, startTime)
