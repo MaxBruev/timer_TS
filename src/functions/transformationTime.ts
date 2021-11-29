@@ -1,4 +1,4 @@
-import { ITransformationTime } from "@/interfaces/transformationTime";
+import {ITransformationTime} from "../interfaces/transformationTime";
 
 export const transformationTime = (currentMs: number): ITransformationTime => {
     const result: ITransformationTime = {

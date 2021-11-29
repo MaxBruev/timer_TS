@@ -1,8 +1,11 @@
-import { $Timer } from "@/classes/baseClassTimer";
-import { getMillisecondsStartTime, getMillisecondsRemainingTime } from "@/functions/parsersFunctions";
-import { checkPointStartTime, checkTimeIsOver} from "@/functions/checkingFunctions";
-import { transformationTime } from "@/functions/transformationTime";
-import { IConstructorData } from "@/interfaces/constructorData";
+import { $Timer } from "../baseClassTimer";
+import {
+    getMillisecondsStartTime,
+    getMillisecondsRemainingTime
+} from "../../functions/parsersFunctions";
+import { checkPointStartTime, checkTimeIsOver} from "../../functions/checkingFunctions";
+import { transformationTime } from "../../functions/transformationTime";
+import { IConstructorData } from "../../interfaces/constructorData";
 
 export class $CalculateTime extends $Timer {
     private _timer: any;
@@ -24,22 +27,21 @@ export class $CalculateTime extends $Timer {
         }
     }
 
+    // ОСНОВНОЙ метод таймера обратного отсчета
     private calculateTimerBack(): void {
-        // let dateNow;
         let remainingTime;
         let repeat
-        let currentStartTime = getMillisecondsStartTime(this.pointStartTime)
+        let currentStartTime = this.pointStartTime ? getMillisecondsStartTime(this.pointStartTime) : 0
 
         this._timer = setInterval(() => {
-            // dateNow = Date.now();
             repeat = currentStartTime !== 0
             remainingTime = getMillisecondsRemainingTime(this.pointStopTime, this.pointStartTime, repeat)
 
             if (remainingTime > 0 && !this.timeIsUp) {
                 this.timeValues = transformationTime(remainingTime)
 
-                if (this.pointStopTime) {
-                    currentStartTime -= 1000
+                if (this.pointStopTime.milliseconds) {
+                    this.pointStopTime.milliseconds -= 1000
                 }
             } else {
                 this.timeValues.seconds = '00';
@@ -51,13 +53,20 @@ export class $CalculateTime extends $Timer {
         }, 1000);
     }
 
+    // Метод для запуска таймеров
     protected calculate(): void {
+
+        // Точка запуска таймера обратного отсчета
         if (this.isTimerBack) {
+
+            // Если имеется точка начала старта, то делается проверк:
+            // прошла точка начала старта или еще не наступила
             if (this.pointStartTime && !this.timeIsUp) {
                 checkPointStartTime(this.pointStartTime, (status: boolean) => {
                     if (status) {
                         this.calculateTimerBack()
                     } else {
+
                         const remainingTime = getMillisecondsRemainingTime(this.pointStopTime, this.pointStartTime)
 
                         this.timeValues = transformationTime(remainingTime)
@@ -68,6 +77,7 @@ export class $CalculateTime extends $Timer {
             }
         }
 
+        // Точка запуска таймера отсчета вперед
         if (this.isTimerForward) {
 
         }

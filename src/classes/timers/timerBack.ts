@@ -1,15 +1,15 @@
-import { $CalculateTime } from "@/classes/calculation/calculateTime";
-import { ITimeParameter } from "@/interfaces/timeParameter";
-import { IConstructorData } from "@/interfaces/constructorData";
+import {$CalculateTime} from "../calculation/calculateTime";
+import {ITimeParameter} from "../../interfaces/timeParameter";
+import {IConstructorData} from "../../interfaces/constructorData";
 
 /**
  * @class ТАЙМЕР обратного отсчета.
  */
-export default class $TimerBack extends $CalculateTime {
+export class $TimerBack extends $CalculateTime {
 
     constructor(stopTime: ITimeParameter, startTime?: ITimeParameter) {
         const data: IConstructorData = {
-            type: 'timeBack',
+            type: 'timerBack',
             stopTime,
             startTime
         }

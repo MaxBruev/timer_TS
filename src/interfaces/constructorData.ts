@@ -1,4 +1,4 @@
-import { ITimeParameter } from "@/interfaces/timeParameter";
+import {ITimeParameter} from "./timeParameter";
 
 export interface IConstructorData {
     type: string,

@@ -1,5 +1,5 @@
-import { ITimeParameter } from "@/interfaces/timeParameter";
-import { TDate } from "@/types/date";
+import {ITimeParameter} from "../interfaces/timeParameter";
+import {TDate} from "../types/date";
 
 export const getMillisecondsStopTime = (value: ITimeParameter): number => {
     let milliseconds: number = 0
@@ -57,6 +57,16 @@ export const getMillisecondsRemainingTime = function (end: ITimeParameter, start
     return result
 }
 
+/**
+ * @description - Функция преобразования исходных данных в миллесекунты
+ *
+ * Смена формата времени: с '2021-06-28 03:35:26' на '2021/06/28 03:35:26' необходима для
+ * корректной работы в Safari
+ *
+ * @param { TDate } value - дата в формате timestamp или миллисекундах.
+ *
+ * @return { number }
+ */
 export const transformTimestamp = function (value: TDate): number {
     return typeof value === 'string' ? Date.parse(value.replace(/-/g, '/')) : value
 }

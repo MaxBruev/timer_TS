@@ -1,5 +1,5 @@
-import { ITimeParameter } from "@/interfaces/timeParameter";
-import { ITransformationTime } from "@/interfaces/transformationTime";
+import {ITimeParameter} from "../interfaces/timeParameter";
+import {ITransformationTime} from "../interfaces/transformationTime";
 
 export abstract class $Timer {
  protected pointStopTime: ITimeParameter
