@@ -1,7 +1,7 @@
 import { $Timer } from "../baseClassTimer";
 import {
     getMillisecondsStartTime,
-    getMillisecondsRemainingTime
+    getMillisecondsRemainingTime, getMillisecondsWhenStop
 } from "../../functions/parsersFunctions";
 import { checkPointStartTime, checkTimeIsOver} from "../../functions/checkingFunctions";
 import { transformationTime } from "../../functions/transformationTime";
@@ -53,6 +53,25 @@ export class $CalculateTime extends $Timer {
         }, 1000);
     }
 
+    private calculateTimerForward(): void {
+        let startPoint = 0
+
+        this._timer = setInterval(() => {
+            const stopPoint = getMillisecondsWhenStop(this.pointStopTime, this.scale)
+            console.log(stopPoint)
+
+            if (startPoint <= stopPoint) {
+                this.timeValues = transformationTime(startPoint)
+
+                startPoint += 1000
+            } else {
+                this.timeIsUp = true
+
+                clearInterval(this._timer);
+            }
+        }, 1000)
+    }
+
     // Метод для запуска таймеров
     protected calculate(): void {
 
@@ -77,7 +96,7 @@ export class $CalculateTime extends $Timer {
 
         // Точка запуска таймера отсчета вперед
         if (this.isTimerForward) {
-
+            this.calculateTimerForward()
         }
     }
 
