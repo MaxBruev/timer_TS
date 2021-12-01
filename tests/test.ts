@@ -1,36 +1,41 @@
-// import {$TimerBack} from "../src/classes/timers/timerBack";
+import {$TimerBack} from "../src/classes/timers/timerBack";
 import {$TimerForward} from "../src/classes/timers/timerForward";
 
-const stopTime = {
-    milliseconds: 10000
-    // timestamp: '2021-11-29 18:00:00'
-}
-
-// const startTime = {
-//     milliseconds: 5000
-//     // timestamp: '2021-11-29 17:00:00'
+// const testTimerBack = () => {
+//     const stopTime = {
+//         milliseconds: 10000
+//     }
+//     const startTime = {
+//         milliseconds: 5000
+//     }
+//
+//     const EX_TimerBack: $TimerBack = new $TimerBack(stopTime, startTime)
+//
+//     testTimer(EX_TimerBack)
 // }
 
-// const EX_Timer: $TimerBack = new $TimerBack(stopTime, startTime)
-const EX_TimerForward: $TimerForward = new $TimerForward(stopTime, 's')
-
-// EX_Timer.start()
-EX_TimerForward.start()
-
-let _timer = setInterval(() => {
-    //TimerBack
-    // if (!EX_Timer.isOverTime) {
-    //     console.log(EX_Timer.timerFull)
-    // } else {
-    //     console.log('все, привет!')
-    //     clearInterval(_timer)
-    // }
-
-    //TimerForward
-    if (!EX_TimerForward.isOverTime) {
-        console.log(EX_TimerForward.timerFull)
-    } else {
-        console.log('все, привет!')
-        clearInterval(_timer)
+const testTimerForward = () => {
+    const stopTime = {
+        amount: 5
     }
-}, 1000)
+    const scale = 's'
+
+    const EX_TimerForward: $TimerForward = new $TimerForward(stopTime, scale)
+
+    testTimer(EX_TimerForward)
+}
+
+const testTimer = (timer: $TimerBack | $TimerForward) => {
+    timer.start()
+
+    let _timer = setInterval(() => {
+        if (!timer.isOverTime) {
+            console.log(timer.timerFull)
+        } else {
+            console.log('все, привет!')
+            clearInterval(_timer)
+        }
+    }, 1000)
+}
+
+testTimerForward()

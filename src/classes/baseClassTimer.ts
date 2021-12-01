@@ -1,6 +1,5 @@
-import {ITimeParameter} from "../interfaces/timeParameter";
+import { ITimeParameter} from "../interfaces/timeParameter";
 import {ITransformationTime} from "../interfaces/transformationTime";
-import {TScale} from "../types/scale";
 
 export abstract class $Timer {
  protected pointStopTime: ITimeParameter
@@ -10,7 +9,7 @@ export abstract class $Timer {
  protected isTimerForward: boolean
  protected timeIsUp: boolean
 
- protected scale: TScale
+ protected scale: string | undefined
 
  protected timeValues: ITransformationTime
 }

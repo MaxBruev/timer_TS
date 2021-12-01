@@ -1,6 +1,5 @@
 import {ITimeParameter} from "../interfaces/timeParameter";
 import {TDate} from "../types/date";
-import {TScale} from "../types/scale";
 
 export const getMillisecondsStopTime = (value: ITimeParameter): number => {
     let milliseconds: number = 0
@@ -58,29 +57,35 @@ export const getMillisecondsRemainingTime = function (end: ITimeParameter, start
     return result
 }
 
-export const getMillisecondsWhenStop = function (end: ITimeParameter, scale: TScale): number {
+export const getMillisecondsWhenStop = function (end: ITimeParameter, scale?: string): number {
     let milliseconds = 0
-
-    console.log(end)
 
     switch (scale) {
         case 'date':
-            milliseconds = getMillisecondsStopTime(end)
+            let stopTime: ITimeParameter = {}
+
+            if (typeof end.amount === "number") {
+                stopTime.milliseconds = end.amount
+            } else {
+                stopTime.timestamp = end.amount
+            }
+
+            milliseconds = getMillisecondsStopTime(stopTime)
             break
         case 'd':
-            milliseconds = Number(end) * 1000 * 60 * 60 * 24
+            milliseconds = Number(end.amount) * 1000 * 60 * 60 * 24
             break
         case 'h':
-            milliseconds = Number(end) * 1000 * 60 * 60
+            milliseconds = Number(end.amount) * 1000 * 60 * 60
             break
         case 'm':
-            milliseconds = Number(end) * 1000 * 60
+            milliseconds = Number(end.amount) * 1000 * 60
             break
         case 's':
-            milliseconds = Number(end) * 1000
+            milliseconds = Number(end.amount) * 1000
             break
         case 'ms':
-            milliseconds = Number(end)
+            milliseconds = Number(end.amount)
             break
     }
 
