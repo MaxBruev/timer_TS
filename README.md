@@ -1,23 +1,40 @@
 # Timer
 
 
+Пакет экспортит следующие классы:
 
-## Getting started
+$TimerBack - ТАЙМЕР обратного отсчета
+$TimerForward - ТАЙМЕР отсчета времени вперед
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Usage:
+**$TimerBack**
+1. Создать новый экземпляр класса и передать в конструктор `"дата\время остановки таймера"`,  `"дата\время начала отсчета таймера"` (**_необязательный_**).
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- **дата\время остановки таймера** - это объект `{milliseconds?: number, timestamp?: number | string}`.
+   
 
-## Add your files
+   `milliseconds` - **через сколько остановится таймер** в миллисекундах (**10000**).
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:76b92368f475469d7f012c0422f769e4?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:76b92368f475469d7f012c0422f769e4?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:76b92368f475469d7f012c0422f769e4?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+   `timestamp` - **когда остановится таймер** (**_"2021-08-27 14:44:22"_** или в timestamp **_1629700683254_**).
 
+   
+- **дата\время начала отсчета таймера** - это объект `{milliseconds?: number, timestamp?: number | string}`.
+
+   `milliseconds` - **через сколько запустить таймер** в миллисекундах (**10000**). 
+
+   `timestamp` - **когда запустить таймер** (**_"2021-08-27 14:44:22"_** или в timestamp **_1629700683254_**).
+
+
+> Пример:
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/MaxBruev/timer.git
-git branch -M main
-git push -uf origin main
+const stopTime = {
+    milliseconds: 10000
+    }
+const startTime = {
+    milliseconds: 5000
+    }
+
+const EX_TimerBack: $TimerBack = new $TimerBack(stopTime, startTime)
 ```
 
 ## Integrate with your tools
